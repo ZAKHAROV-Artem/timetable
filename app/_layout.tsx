@@ -18,7 +18,9 @@ export default function RootLayout() {
       }}
     >
       <StatusBar barStyle="dark-content" />
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack
+        screenOptions={{ headerShown: false, navigationBarColor: "#ffffff" }}
+      >
         <Stack.Screen name="(tabs)" />
       </Stack>
     </SafeAreaProvider>
