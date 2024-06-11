@@ -8,6 +8,7 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
+        unmountOnBlur: true,
       }}
     >
       <Tabs.Screen

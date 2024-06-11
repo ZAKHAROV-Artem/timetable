@@ -1,5 +1,10 @@
-import { View } from "react-native";
+import FadeView from "@/components/animation/fade-view";
+import { Text } from "react-native";
 
 export default function Homework() {
-  return <View></View>;
+  return (
+    <FadeView>
+      <Text>Homework</Text>
+    </FadeView>
+  );
 }
