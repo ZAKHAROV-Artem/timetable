@@ -1,20 +1,20 @@
 import "@/global.css";
-import { FlatList, ScrollView, SectionList, Text, View } from "react-native";
+import { ScrollView, SectionList, View } from "react-native";
 import { Medium } from "@/components/ui/typography";
 import { Subject } from "@/components/subject";
 import { LinearGradient } from "expo-linear-gradient";
+import FadeView from "@/components/animation/fade-view";
 
 export default function Index() {
   return (
-    <>
+    <FadeView>
       <LinearGradient
-        // Background Linear Gradient
         colors={["white", "transparent"]}
         className="absolute top-0 z-10 h-14 w-full"
       />
-      <ScrollView className="flex-1 bg-white p-3">
+      <ScrollView className="flex-1 p-3">
         <SectionList
-          className="pb-[100] pt-5"
+          className="pb-28 pt-5"
           scrollEnabled={false}
           sections={[
             {
@@ -40,10 +40,9 @@ export default function Index() {
         />
       </ScrollView>
       <LinearGradient
-        // Background Linear Gradient
         colors={["transparent", "white"]}
         className="absolute bottom-0 z-10 h-14 w-full"
       />
-    </>
+    </FadeView>
   );
 }
