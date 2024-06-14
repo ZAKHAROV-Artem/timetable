@@ -49,7 +49,7 @@ export default function TabItem({
 
   return (
     <Pressable
-      className="flex flex-1 items-center justify-center"
+      className="flex flex-1 items-center justify-center py-4"
       accessibilityRole="button"
       accessibilityState={isFocused ? { selected: true } : {}}
       accessibilityLabel={options.tabBarAccessibilityLabel}

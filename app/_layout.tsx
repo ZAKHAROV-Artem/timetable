@@ -1,12 +1,31 @@
 import { Stack } from "expo-router";
-import { StatusBar } from "react-native";
+import { StatusBar, Text, View } from "react-native";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import migrations from "@/drizzle/migrations";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import { db } from "@/database";
 
 export default function RootLayout() {
+  const { success, error } = useMigrations(db, migrations);
   const insets = useSafeAreaInsets();
+
+  if (error) {
+    return (
+      <View>
+        <Text>Migration error: {error.message}</Text>
+      </View>
+    );
+  }
+  if (!success) {
+    return (
+      <View>
+        <Text>Migration is in progress...</Text>
+      </View>
+    );
+  }
   return (
     <SafeAreaProvider
       style={{

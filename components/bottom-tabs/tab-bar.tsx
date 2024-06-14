@@ -9,7 +9,7 @@ export default function TabBar({
   navigation,
 }: BottomTabBarProps) {
   return (
-    <View className="absolute bottom-5 left-5 right-5 flex flex-row overflow-hidden rounded-full border bg-white px-4 py-6">
+    <View className="absolute bottom-5 left-5 right-5 flex flex-row overflow-hidden rounded-full border bg-white px-4">
       {state.routes.map((route, index) => (
         <TabItem
           options={descriptors[route.key].options}
