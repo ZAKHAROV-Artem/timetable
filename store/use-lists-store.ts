@@ -21,14 +21,17 @@ export const useListsStore = create<State & Actions>()(
         {
           id: "1",
           name: "Teachers",
+          slug: "teachers",
         },
         {
           id: "2",
           name: "Rooms",
+          slug: "rooms",
         },
         {
           id: "3",
           name: "Subjects",
+          slug: "subjects",
         },
       ],
 
