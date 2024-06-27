@@ -15,6 +15,7 @@ module.exports = {
         "hot-pink": "#EA15BB",
         "mint-green": "#bdfcd2",
         "whisper-white": "#f6f6f6",
+        "soft-gray": "#D3D3D3",
       },
     },
   },

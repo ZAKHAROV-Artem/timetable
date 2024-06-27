@@ -8,7 +8,7 @@ type FadeViewProps = {
 };
 export default function FadeView({ children, className }: FadeViewProps) {
   return (
-    <View className={cn("flex-1 bg-white")}>
+    <View className={cn("flex-1 bg-white p-3")}>
       <Animated.View
         className={cn("flex-1", className)}
         entering={FadeIn}
