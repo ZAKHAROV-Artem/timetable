@@ -1,7 +1,8 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import { persist, createJSONStorage } from "zustand/middleware";
 import { List } from "@/types/list";
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
+
 import { zustandStorage } from "./mmkv-storage";
 
 type State = {

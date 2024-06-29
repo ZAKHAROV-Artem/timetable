@@ -1,5 +1,6 @@
 import { BookOpen, Home, List, Settings } from "@/components/icons";
 import { cn } from "@/lib/utils";
+
 type Props = {
   route: { name: string };
   className?: string;

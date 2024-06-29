@@ -1,9 +1,9 @@
-import "@/global.css";
-import { ScrollView, SectionList, View } from "react-native";
-import { Medium } from "@/components/ui/typography";
-import { Subject } from "@/components/subject";
-import { LinearGradient } from "expo-linear-gradient";
 import FadeView from "@/components/animation/fade-view";
+import { Subject } from "@/components/subject";
+import { Medium } from "@/components/ui/typography";
+import "@/global.css";
+import { LinearGradient } from "expo-linear-gradient";
+import { ScrollView, SectionList, View } from "react-native";
 
 export default function Index() {
   return (

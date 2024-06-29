@@ -1,6 +1,6 @@
+import { Plus } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Plus } from "@/components/icons";
 import { View, Text } from "react-native";
 
 type ListDetailProps = {};
