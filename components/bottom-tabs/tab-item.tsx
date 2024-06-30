@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
+import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 import { Pressable } from "react-native";
 import Animated, {
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
+
 import TabItemIcon from "./tab-item-icon";
-import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 
 type TabItemProps = {
   options: BottomTabNavigationOptions;
