@@ -1,3 +1,4 @@
+import { PortalHost } from "@rn-primitives/portal";
 import { Stack } from "expo-router";
 import { StatusBar } from "react-native";
 import {
@@ -23,6 +24,7 @@ export default function RootLayout() {
       >
         <Stack.Screen name="(tabs)" />
       </Stack>
+      <PortalHost />
     </SafeAreaProvider>
   );
 }

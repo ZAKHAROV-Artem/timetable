@@ -6,7 +6,8 @@ import {
   Plus,
   Settings,
   UserRound,
+  X,
 } from "lucide-react-native";
 
-iconWithClassName([Home, UserRound, List, BookOpen, Settings, Plus]);
-export { Home, UserRound, List, BookOpen, Settings, Plus };
+iconWithClassName([Home, UserRound, List, BookOpen, Settings, Plus, X]);
+export { Home, UserRound, List, BookOpen, Settings, Plus, X };
