@@ -1,0 +1,12 @@
+{
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+
+  "plugins": [
+    "prettier-plugin-pkg",
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "tailwindFunctions": ["cn"],
+  "tailwindConfig": "./tailwind.config.ts"
+}
