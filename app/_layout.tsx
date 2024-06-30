@@ -2,25 +2,20 @@ import { PortalHost } from "@rn-primitives/portal";
 import { Stack } from "expo-router";
 import { StatusBar } from "react-native";
 import {
+  initialWindowMetrics,
   SafeAreaProvider,
-  useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
 export default function RootLayout() {
-  const insets = useSafeAreaInsets();
   return (
-    <SafeAreaProvider
-      style={{
-        flex: 1,
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
-      }}
-    >
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <StatusBar barStyle="dark-content" />
       <Stack
-        screenOptions={{ headerShown: false, navigationBarColor: "#ffffff" }}
+        screenOptions={{
+          headerShown: false,
+          navigationBarColor: "#ffffff",
+          navigationBarHidden: true,
+        }}
       >
         <Stack.Screen name="(tabs)" />
       </Stack>

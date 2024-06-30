@@ -16,6 +16,7 @@ module.exports = {
         "mint-green": "#bdfcd2",
         "whisper-white": "#f6f6f6",
         "soft-gray": "#D3D3D3",
+        white: "#FFFFFF",
       },
     },
   },

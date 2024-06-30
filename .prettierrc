@@ -7,6 +7,6 @@
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "tailwindFunctions": ["cn"],
+  "tailwindFunctions": ["cn", "clsx", "twMerge"],
   "tailwindConfig": "./tailwind.config.js"
 }
