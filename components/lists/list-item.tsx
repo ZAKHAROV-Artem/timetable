@@ -1,4 +1,4 @@
-import { List } from "@/types/list";
+import { List } from "@/types/lists/list";
 import { Link } from "expo-router";
 import { Text } from "react-native";
 

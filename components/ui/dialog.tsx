@@ -50,19 +50,16 @@ const DialogContent = React.forwardRef<
   return (
     <DialogPortal hostName={portalHost}>
       <DialogOverlay>
-        <View
-          ref={ref}
-          className={cn(
-            "z-50 gap-4 rounded-lg border border-black bg-white p-6 shadow-xl web:cursor-default web:duration-200",
-            open
-              ? "web:animate-in web:fade-in-0 web:zoom-in-95"
-              : "web:animate-out web:fade-out-0 web:zoom-out-95",
-            className,
-          )}
-          {...props}
-        >
-          {children}
-        </View>
+        <DialogPrimitive.Content ref={ref} {...props}>
+          <View
+            className={cn(
+              "z-50 gap-4 rounded-lg border border-black bg-white p-6 shadow-xl",
+              className,
+            )}
+          >
+            {children}
+          </View>
+        </DialogPrimitive.Content>
       </DialogOverlay>
     </DialogPortal>
   );
