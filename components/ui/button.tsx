@@ -7,7 +7,8 @@ import { Pressable } from "react-native";
 const buttonVariants = cva("group flex items-center justify-center", {
   variants: {
     variant: {
-      default: "bg-blue-500 web:hover:opacity-90 active:opacity-90 rounded-md",
+      default:
+        "bg-royal-indigo web:hover:opacity-90 active:opacity-90 rounded-md",
       icon: "bg-blue-500 rounded-full active:opacity-90",
     },
     size: {
@@ -21,13 +22,15 @@ const buttonVariants = cva("group flex items-center justify-center", {
   },
 });
 
-const buttonTextVariants = cva("text-sm text-foreground", {
+const buttonTextVariants = cva("", {
   variants: {
     variant: {
-      default: "text-white",
+      default: "text-white font-medium",
+      icon: "",
     },
     size: {
-      default: "",
+      default: "text-base",
+      icon: "",
     },
   },
   defaultVariants: {
@@ -45,16 +48,10 @@ const Button = React.forwardRef<
 >(({ className, variant, size, ...props }, ref) => {
   return (
     <TextClassContext.Provider
-      value={cn(
-        props.disabled && "web:pointer-events-none",
-        buttonTextVariants({ variant, size }),
-      )}
+      value={cn(buttonTextVariants({ variant, size }))}
     >
       <Pressable
-        className={cn(
-          props.disabled && "opacity-50 web:pointer-events-none",
-          buttonVariants({ variant, size, className }),
-        )}
+        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         role="button"
         {...props}
