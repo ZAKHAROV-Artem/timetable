@@ -1,6 +1,7 @@
 import FadeView from "@/components/animation/fade-view";
 import SafeArea from "@/components/primitives/safe-area";
 import { Subject } from "@/components/subject";
+import { AddButton } from "@/components/ui/buttons";
 import { Medium } from "@/components/ui/typography";
 import "@/global.css";
 import { LinearGradient } from "expo-linear-gradient";
@@ -16,7 +17,7 @@ export default function Index() {
         />
         <ScrollView className="flex-1">
           <SectionList
-            className="pb-28"
+            className="pb-24"
             scrollEnabled={false}
             sections={[
               {
@@ -45,6 +46,7 @@ export default function Index() {
           colors={["transparent", "white"]}
           className="absolute bottom-0 z-10 h-14 w-full"
         />
+        <AddButton onPress={() => {}} />
       </FadeView>
     </SafeArea>
   );
