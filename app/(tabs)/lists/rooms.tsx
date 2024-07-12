@@ -18,7 +18,7 @@ export default function Rooms() {
       <FlashList
         data={rooms}
         renderItem={({ item }) => (
-          <Text className="text-lg">{item.number}</Text>
+          <Text className="text-lg">{item.roomNumber}</Text>
         )}
         estimatedItemSize={100}
         ItemSeparatorComponent={() => (
