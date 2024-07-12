@@ -67,7 +67,7 @@ export default function AddTeacherDialog() {
               name="name"
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input
-                  placeholder="Write some stuff..."
+                  placeholder="Mr.John Doe"
                   onBlur={onBlur}
                   onChangeText={onChange}
                   value={value}
