@@ -18,6 +18,14 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="add-class"
+          options={{
+            title: "Add class",
+            headerShown: true,
+            animation: "slide_from_right",
+          }}
+        />
       </Stack>
       <PortalHost />
     </SafeAreaProvider>

@@ -5,6 +5,7 @@ import { AddButton } from "@/components/ui/buttons";
 import { Medium } from "@/components/ui/typography";
 import "@/global.css";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import { ScrollView, SectionList, View } from "react-native";
 
 export default function Index() {
@@ -46,7 +47,7 @@ export default function Index() {
           colors={["transparent", "white"]}
           className="absolute bottom-0 z-10 h-14 w-full"
         />
-        <AddButton onPress={() => {}} />
+        <AddButton onPress={() => router.push("/add-class")} />
       </FadeView>
     </SafeArea>
   );

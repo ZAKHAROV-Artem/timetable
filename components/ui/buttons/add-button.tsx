@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react-native";
-import { Text, View } from "react-native";
 import { Button } from "./button";
 
 type AddButtonProps = {
@@ -10,7 +9,7 @@ export default function AddButton({ className, ...props }: AddButtonProps) {
   return (
     <Button
       className={cn(
-        "absolute bottom-24 left-1/2 flex -translate-x-1/2 items-center justify-center overflow-hidden",
+        "absolute bottom-24 left-1/2 flex -translate-x-1/2 items-center justify-center",
         className,
       )}
       variant={"icon"}
