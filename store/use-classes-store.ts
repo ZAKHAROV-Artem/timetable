@@ -12,12 +12,16 @@ type Actions = {
   setClasses: (lists: Class[]) => void;
   addClass: (list: Class) => void;
   removeClass: (id: string) => void;
+  reset: () => void;
 };
 
+const initialState: State = {
+  classes: [],
+};
 export const useClassesStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      classes: [],
+      ...initialState,
 
       setClasses: (classes: Class[]) => {
         set((store) => {
@@ -36,6 +40,8 @@ export const useClassesStore = create<State & Actions>()(
           );
         });
       },
+
+      reset: () => set(initialState),
     })),
     {
       name: "classes-storage",

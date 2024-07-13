@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Text } from "@/components/ui/text";
+import { colors } from "@/data/colors";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
 import { useSubjectsStore } from "@/store/user-subjects-store";
 import {
@@ -16,7 +17,6 @@ import {
   AddSubjectShema,
 } from "@/types/validation/add-subject";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Value } from "@rn-primitives/select";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
@@ -92,28 +92,7 @@ export default function AddSubjectDialog() {
               name="color"
               render={({ field: { onChange, onBlur, value } }) => (
                 <ColorPicker
-                  colors={[
-                    "#a1c9f4",
-                    "#ffb482",
-                    "#8de5a1",
-                    "#ff9f9b",
-                    "#d0bbff",
-                    "#debb9b",
-                    "#fab0e4",
-                    "#cfcfcf",
-                    "#fffea3",
-                    "#b9f2f0",
-                    "#f49fbc",
-                    "#9fd8f4",
-                    "#f0c8a0",
-                    "#a0f0e4",
-                    "#f4a0c2",
-                    "#b2f4a0",
-                    "#a0b2f4",
-                    "#f4e0a0",
-                    "#a0f4e0",
-                    "#e0a0f4",
-                  ]}
+                  colors={colors}
                   value={value}
                   onChange={onChange}
                 />

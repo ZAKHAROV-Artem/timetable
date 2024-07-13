@@ -6,4 +6,5 @@ export type Class = {
   room: string;
   classStartsAt: Date;
   classEndsAt: Date;
+  color: string;
 };

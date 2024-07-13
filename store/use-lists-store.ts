@@ -12,29 +12,32 @@ type Actions = {
   setLists: (lists: List[]) => void;
   addList: (list: List) => void;
   removeList: (id: string) => void;
+  reset: () => void;
 };
 
+const initialState: State = {
+  lists: [
+    {
+      id: "1",
+      name: "Teachers",
+      slug: "teachers",
+    },
+    {
+      id: "2",
+      name: "Rooms",
+      slug: "rooms",
+    },
+    {
+      id: "3",
+      name: "Subjects",
+      slug: "subjects",
+    },
+  ],
+};
 export const useListsStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      lists: [
-        {
-          id: "1",
-          name: "Teachers",
-          slug: "teachers",
-        },
-        {
-          id: "2",
-          name: "Rooms",
-          slug: "rooms",
-        },
-        {
-          id: "3",
-          name: "Subjects",
-          slug: "subjects",
-        },
-      ],
-
+      ...initialState,
       setLists: (lists: List[]) => {
         set((store) => {
           store.lists = lists;
@@ -52,6 +55,8 @@ export const useListsStore = create<State & Actions>()(
           store.lists = store.lists.filter((list) => list.id !== id);
         });
       },
+
+      reset: () => set(initialState),
     })),
     {
       name: "lists-storage",

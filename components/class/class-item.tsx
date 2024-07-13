@@ -7,11 +7,12 @@ export type ClassItemProps = {
   classItem: Class;
 };
 export default function ClassItem({ classItem }: ClassItemProps) {
-  const random = Math.round(Math.random() * 2);
-  const bg = ["bg-sky-blue", "bg-peach-blush", "bg-cotton-candy"][random];
   return (
     <View className="flex h-40 flex-row overflow-hidden rounded-3xl bg-whisper-white">
-      <View className={cn("h-full w-10 rounded-3xl", bg)} />
+      <View
+        className={cn("h-full w-10 rounded-3xl")}
+        style={{ backgroundColor: classItem.color }}
+      />
       <View className="p-3">
         <Text className="text-2xl font-light text-royal-indigo">
           {dayjs(classItem.classStartsAt).format("HH:mm")} -{" "}

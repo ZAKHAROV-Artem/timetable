@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/buttons";
+import ColorPicker from "@/components/ui/color-picker";
 import {
   Select,
   SelectContent,
@@ -7,6 +8,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
+import { Medium } from "@/components/ui/typography";
+import { colors } from "@/data/colors";
+import { weekdays } from "@/data/weekdays";
 import { cn } from "@/lib/utils";
 import { useClassesStore } from "@/store/use-classes-store";
 import { useRoomsStore } from "@/store/user-rooms-store";
@@ -21,16 +25,6 @@ import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 
-const weekDays = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
 export default function AddClass() {
   const teachers = useTeachersStore((store) => store.teachers);
   const rooms = useRoomsStore((store) => store.rooms);
@@ -42,9 +36,10 @@ export default function AddClass() {
   const [showEndsAtTimePicker, setShowEndsAtTimePicker] =
     useState<boolean>(false);
 
-  const { control, getValues, handleSubmit } = useForm<AddClassFields>({
-    resolver: zodResolver(AddClassSchema),
-  });
+  const { control, setValue, getValues, handleSubmit } =
+    useForm<AddClassFields>({
+      resolver: zodResolver(AddClassSchema),
+    });
 
   const onSubmit: SubmitHandler<AddClassFields> = (data) => {
     addClass({
@@ -55,6 +50,7 @@ export default function AddClass() {
       subject: data.subject.value,
       classStartsAt: data.classStartsAt,
       classEndsAt: data.classEndsAt,
+      color: data.color,
     });
     router.back();
   };
@@ -77,7 +73,7 @@ export default function AddClass() {
                   <SelectValue placeholder="Select a weekday" />
                 </SelectTrigger>
                 <SelectContent className="w-full">
-                  {weekDays.map((day) => (
+                  {weekdays.map((day) => (
                     <SelectItem key={day} value={day} label={day}>
                       {day}
                     </SelectItem>
@@ -140,7 +136,17 @@ export default function AddClass() {
             control={control}
             name="subject"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <Select value={value} onValueChange={onChange}>
+              <Select
+                value={value}
+                onValueChange={(option) => {
+                  onChange(option);
+                  setValue(
+                    "color",
+                    subjects.find((subject) => subject.name === option?.value)
+                      ?.color || "",
+                  );
+                }}
+              >
                 <SelectTrigger
                   className={cn({
                     "border-mint-green": value,
@@ -150,9 +156,13 @@ export default function AddClass() {
                   <SelectValue placeholder="Select a subject" />
                 </SelectTrigger>
                 <SelectContent className="w-full">
-                  {subjects.map((day) => (
-                    <SelectItem key={day.id} value={day.name} label={day.name}>
-                      {day.name}
+                  {subjects.map((subject) => (
+                    <SelectItem
+                      key={subject.id}
+                      value={subject.name}
+                      label={subject.name}
+                    >
+                      {subject.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -160,67 +170,80 @@ export default function AddClass() {
             )}
           />
         </View>
-        <View className="flex flex-row justify-center gap-2">
-          <Button
-            className="w-1/2"
-            onPress={() => setShowStartsAtTimePicker(true)}
-          >
-            <Text>
-              {getValues("classStartsAt")
-                ? dayjs(getValues("classStartsAt")).format("HH:mm")
-                : "Starts at"}
-            </Text>
-          </Button>
-          <Button
-            className="w-1/2"
-            onPress={() => setShowEndsAtTimePicker(true)}
-          >
-            <Text>
-              {getValues("classEndsAt")
-                ? dayjs(getValues("classEndsAt")).format("HH:mm")
-                : "Ends at"}
-            </Text>
-          </Button>
-          {showStartsAtTimePicker && (
-            <Controller
-              control={control}
-              name="classStartsAt"
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <DateTimePicker
-                  mode="time"
-                  value={value || new Date()}
-                  is24Hour={true}
-                  onChange={(event, selectedDate) => {
-                    onChange(selectedDate);
-                    setShowStartsAtTimePicker(false);
-                  }}
-                />
-              )}
-            />
-          )}
-          {showEndsAtTimePicker && (
-            <Controller
-              control={control}
-              name="classEndsAt"
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <DateTimePicker
-                  mode="time"
-                  value={value || new Date()}
-                  is24Hour={true}
-                  onChange={(event, selectedDate) => {
-                    onChange(selectedDate);
-                    setShowEndsAtTimePicker(false);
-                  }}
-                />
-              )}
-            />
-          )}
+        <View>
+          <Medium className="mb-2">Duration</Medium>
+          <View className="flex flex-row justify-center gap-2">
+            <Button
+              className="w-1/2"
+              onPress={() => setShowStartsAtTimePicker(true)}
+            >
+              <Text>
+                {getValues("classStartsAt")
+                  ? dayjs(getValues("classStartsAt")).format("HH:mm")
+                  : "Starts at"}
+              </Text>
+            </Button>
+            <Button
+              className="w-1/2"
+              onPress={() => setShowEndsAtTimePicker(true)}
+            >
+              <Text>
+                {getValues("classEndsAt")
+                  ? dayjs(getValues("classEndsAt")).format("HH:mm")
+                  : "Ends at"}
+              </Text>
+            </Button>
+            {showStartsAtTimePicker && (
+              <Controller
+                control={control}
+                name="classStartsAt"
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <DateTimePicker
+                    mode="time"
+                    value={value || new Date()}
+                    is24Hour={true}
+                    onChange={(event, selectedDate) => {
+                      onChange(selectedDate);
+                      setShowStartsAtTimePicker(false);
+                    }}
+                  />
+                )}
+              />
+            )}
+            {showEndsAtTimePicker && (
+              <Controller
+                control={control}
+                name="classEndsAt"
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <DateTimePicker
+                    mode="time"
+                    value={value || new Date()}
+                    is24Hour={true}
+                    onChange={(event, selectedDate) => {
+                      onChange(selectedDate);
+                      setShowEndsAtTimePicker(false);
+                    }}
+                  />
+                )}
+              />
+            )}
+          </View>
+        </View>
+        <View>
+          <Medium className="mb-2">Color (optional)</Medium>
+          <Controller
+            control={control}
+            name="color"
+            render={({ field: { onChange, onBlur, value } }) => (
+              <ColorPicker colors={colors} value={value} onChange={onChange} />
+            )}
+          />
         </View>
         <Button onPress={handleSubmit(onSubmit)}>
           <Text>Add</Text>
