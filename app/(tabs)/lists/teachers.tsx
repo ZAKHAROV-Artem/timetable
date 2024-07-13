@@ -8,9 +8,9 @@ import { FlashList } from "@shopify/flash-list";
 import { View } from "react-native";
 
 export default function Teachers() {
-  const teachers = useTeachersStore((state) => state.teachers);
+  const teachers = useTeachersStore((store) => store.teachers);
   const showAddTeacherDialog = useDialogsStore(
-    (state) => state.addTeacher.show,
+    (store) => store.addTeacher.show,
   );
   return (
     <View className="flex-1 p-3">

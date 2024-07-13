@@ -20,12 +20,12 @@ import { Input } from "../ui/input";
 
 export default function AddRoomDialog() {
   const { open, setOpen } = useDialogsStore(
-    useShallow((state) => ({
-      open: state.addRoom.open,
-      setOpen: state.addRoom.setOpen,
+    useShallow((store) => ({
+      open: store.addRoom.open,
+      setOpen: store.addRoom.setOpen,
     })),
   );
-  const addRoom = useRoomsStore((state) => state.addRoom);
+  const addRoom = useRoomsStore((store) => store.addRoom);
 
   const {
     handleSubmit,

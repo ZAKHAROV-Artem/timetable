@@ -20,20 +20,20 @@ export const useRoomsStore = create<State & Actions>()(
       rooms: [],
 
       setRooms: (rooms: Room[]) => {
-        set((state) => {
-          state.rooms = rooms;
+        set((store) => {
+          store.rooms = rooms;
         });
       },
 
       addRoom: (room: Room) => {
-        set((state) => {
-          state.rooms.push(room);
+        set((store) => {
+          store.rooms.push(room);
         });
       },
 
       removeRoom: (id: string) => {
-        set((state) => {
-          state.rooms = state.rooms.filter((room) => room.id !== id);
+        set((store) => {
+          store.rooms = store.rooms.filter((room) => room.id !== id);
         });
       },
     })),

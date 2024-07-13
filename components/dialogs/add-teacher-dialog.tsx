@@ -22,12 +22,12 @@ import { useShallow } from "zustand/react/shallow";
 
 export default function AddTeacherDialog() {
   const { open, setOpen } = useDialogsStore(
-    useShallow((state) => ({
-      open: state.addTeacher.open,
-      setOpen: state.addTeacher.setOpen,
+    useShallow((store) => ({
+      open: store.addTeacher.open,
+      setOpen: store.addTeacher.setOpen,
     })),
   );
-  const addTeacher = useTeachersStore((state) => state.addTeacher);
+  const addTeacher = useTeachersStore((store) => store.addTeacher);
 
   const {
     handleSubmit,

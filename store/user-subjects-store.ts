@@ -19,18 +19,18 @@ export const useSubjectsStore = create<State & Actions>()(
     immer((set, get) => ({
       subjects: [],
       setSubjects: (subjects: Subject[]) => {
-        set((state) => {
-          state.subjects = subjects;
+        set((store) => {
+          store.subjects = subjects;
         });
       },
       addSubject: (subject: Subject) => {
-        set((state) => {
-          state.subjects.push(subject);
+        set((store) => {
+          store.subjects.push(subject);
         });
       },
       removeSubject: (id: string) => {
-        set((state) => {
-          state.subjects = state.subjects.filter(
+        set((store) => {
+          store.subjects = store.subjects.filter(
             (subject) => subject.id !== id,
           );
         });

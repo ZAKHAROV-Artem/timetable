@@ -19,18 +19,18 @@ export const useTeachersStore = create<State & Actions>()(
     immer((set, get) => ({
       teachers: [],
       setTeachers: (teachers: Teacher[]) => {
-        set((state) => {
-          state.teachers = teachers;
+        set((store) => {
+          store.teachers = teachers;
         });
       },
       addTeacher: (teacher: Teacher) => {
-        set((state) => {
-          state.teachers.push(teacher);
+        set((store) => {
+          store.teachers.push(teacher);
         });
       },
       removeTeacher: (id: string) => {
-        set((state) => {
-          state.teachers = state.teachers.filter(
+        set((store) => {
+          store.teachers = store.teachers.filter(
             (teacher) => teacher.id !== id,
           );
         });

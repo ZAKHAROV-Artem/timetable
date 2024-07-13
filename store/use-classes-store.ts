@@ -20,18 +20,18 @@ export const useClassesStore = create<State & Actions>()(
       classes: [],
 
       setClasses: (classes: Class[]) => {
-        set((state) => {
-          state.classes = classes;
+        set((store) => {
+          store.classes = classes;
         });
       },
       addClass: (classItem: Class) => {
-        set((state) => {
-          state.classes.push(classItem);
+        set((store) => {
+          store.classes.push(classItem);
         });
       },
       removeClass: (id: string) => {
-        set((state) => {
-          state.classes = state.classes.filter(
+        set((store) => {
+          store.classes = store.classes.filter(
             (classItem) => classItem.id !== id,
           );
         });

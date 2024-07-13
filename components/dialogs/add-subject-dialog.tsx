@@ -23,13 +23,13 @@ import { Input } from "../ui/input";
 
 export default function AddSubjectDialog() {
   const { open, setOpen } = useDialogsStore(
-    useShallow((state) => ({
-      open: state.addSubject.open,
-      setOpen: state.addSubject.setOpen,
+    useShallow((store) => ({
+      open: store.addSubject.open,
+      setOpen: store.addSubject.setOpen,
     })),
   );
 
-  const addSubject = useSubjectsStore((state) => state.addSubject);
+  const addSubject = useSubjectsStore((store) => store.addSubject);
 
   const {
     handleSubmit,

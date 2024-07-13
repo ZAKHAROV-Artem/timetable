@@ -3,18 +3,18 @@ import { DialogsStateCreator } from "@/types/dialogs";
 export const addSubjectSlice: DialogsStateCreator = (set) => ({
   open: false,
   setOpen: (open: boolean) => {
-    set((state) => {
-      state.addSubject.open = open;
+    set((store) => {
+      store.addSubject.open = open;
     });
   },
   show: () => {
-    set((state) => {
-      state.addSubject.open = true;
+    set((store) => {
+      store.addSubject.open = true;
     });
   },
   hide: () => {
-    set((state) => {
-      state.addSubject.open = false;
+    set((store) => {
+      store.addSubject.open = false;
     });
   },
 });

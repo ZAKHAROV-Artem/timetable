@@ -32,10 +32,10 @@ const weekDays = [
 ];
 
 export default function AddClass() {
-  const teachers = useTeachersStore((state) => state.teachers);
-  const rooms = useRoomsStore((state) => state.rooms);
-  const subjects = useSubjectsStore((state) => state.subjects);
-  const addClass = useClassesStore((state) => state.addClass);
+  const teachers = useTeachersStore((store) => store.teachers);
+  const rooms = useRoomsStore((store) => store.rooms);
+  const subjects = useSubjectsStore((store) => store.subjects);
+  const addClass = useClassesStore((store) => store.addClass);
 
   const [showStartsAtTimePicker, setShowStartsAtTimePicker] =
     useState<boolean>(false);

@@ -8,8 +8,8 @@ import { FlashList } from "@shopify/flash-list";
 import { View } from "react-native";
 
 export default function Rooms() {
-  const rooms = useRoomsStore((state) => state.rooms);
-  const showAddRoomDialog = useDialogsStore((state) => state.addRoom.show);
+  const rooms = useRoomsStore((store) => store.rooms);
+  const showAddRoomDialog = useDialogsStore((store) => store.addRoom.show);
 
   return (
     <View className="flex-1 p-3">

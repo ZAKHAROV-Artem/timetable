@@ -36,20 +36,20 @@ export const useListsStore = create<State & Actions>()(
       ],
 
       setLists: (lists: List[]) => {
-        set((state) => {
-          state.lists = lists;
+        set((store) => {
+          store.lists = lists;
         });
       },
 
       addList: (list: List) => {
-        set((state) => {
-          state.lists.push(list);
+        set((store) => {
+          store.lists.push(list);
         });
       },
 
       removeList: (id: string) => {
-        set((state) => {
-          state.lists = state.lists.filter((list) => list.id !== id);
+        set((store) => {
+          store.lists = store.lists.filter((list) => list.id !== id);
         });
       },
     })),

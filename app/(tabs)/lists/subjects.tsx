@@ -8,9 +8,9 @@ import { FlashList } from "@shopify/flash-list";
 import { View } from "react-native";
 
 export default function Subjects() {
-  const subjects = useSubjectsStore((state) => state.subjects);
+  const subjects = useSubjectsStore((store) => store.subjects);
   const showAddSubjectDialog = useDialogsStore(
-    (state) => state.addSubject.show,
+    (store) => store.addSubject.show,
   );
   return (
     <View className="flex-1 p-3">

@@ -12,7 +12,7 @@ import { router } from "expo-router";
 import { ScrollView, SectionList, View } from "react-native";
 
 export default function Index() {
-  const classes = useClassesStore((state) => state.classes);
+  const classes = useClassesStore((store) => store.classes);
 
   // Group classes by date
   const sections = classes.reduce((acc: Record<string, Class[]>, classItem) => {
