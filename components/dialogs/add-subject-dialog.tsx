@@ -16,10 +16,12 @@ import {
   AddSubjectShema,
 } from "@/types/validation/add-subject";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Value } from "@rn-primitives/select";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
 import { Input } from "../ui/input";
+import ColorPicker from "./../ui/color-picker";
 
 export default function AddSubjectDialog() {
   const { open, setOpen } = useDialogsStore(
@@ -39,6 +41,7 @@ export default function AddSubjectDialog() {
   } = useForm<AddSubjectFields>({
     defaultValues: {
       name: "",
+      color: "",
     },
     resolver: zodResolver(AddSubjectShema),
   });
@@ -47,6 +50,7 @@ export default function AddSubjectDialog() {
     addSubject({
       id: Date.now().toString(),
       name: data.name,
+      color: data.color,
     });
     reset();
     setOpen(false);
@@ -60,9 +64,9 @@ export default function AddSubjectDialog() {
             Add new subject here. Click add when you're done.
           </DialogDescription>
         </DialogHeader>
-        <View>
+        <View className="flex gap-5">
           <View>
-            <Text className="mb-1">Teacher name</Text>
+            <Text className="mb-1">Subject</Text>
             <Controller
               control={control}
               name="name"
@@ -80,6 +84,41 @@ export default function AddSubjectDialog() {
                 {errors.name.message}
               </Text>
             )}
+          </View>
+          <View>
+            <Text className="mb-1">Color (optional)</Text>
+            <Controller
+              control={control}
+              name="color"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <ColorPicker
+                  colors={[
+                    "#a1c9f4",
+                    "#ffb482",
+                    "#8de5a1",
+                    "#ff9f9b",
+                    "#d0bbff",
+                    "#debb9b",
+                    "#fab0e4",
+                    "#cfcfcf",
+                    "#fffea3",
+                    "#b9f2f0",
+                    "#f49fbc",
+                    "#9fd8f4",
+                    "#f0c8a0",
+                    "#a0f0e4",
+                    "#f4a0c2",
+                    "#b2f4a0",
+                    "#a0b2f4",
+                    "#f4e0a0",
+                    "#a0f4e0",
+                    "#e0a0f4",
+                  ]}
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
           </View>
         </View>
         <DialogFooter>
