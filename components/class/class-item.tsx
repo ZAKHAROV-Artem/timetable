@@ -1,7 +1,12 @@
 import { cn } from "@/lib/utils";
+import { Class } from "@/types/class";
+import dayjs from "dayjs";
 import { Text, View } from "react-native";
 
-export default function Subject() {
+export type ClassItemProps = {
+  classItem: Class;
+};
+export default function ClassItem({ classItem }: ClassItemProps) {
   const random = Math.round(Math.random() * 2);
   const bg = ["bg-sky-blue", "bg-peach-blush", "bg-cotton-candy"][random];
   return (
@@ -9,13 +14,14 @@ export default function Subject() {
       <View className={cn("h-full w-10 rounded-3xl", bg)} />
       <View className="p-3">
         <Text className="text-2xl font-light text-royal-indigo">
-          12:00 - 13:00
+          {dayjs(classItem.classStartsAt).format("HH:mm")} -{" "}
+          {dayjs(classItem.classEndsAt).format("HH:mm")}
         </Text>
         <Text className="text-xl font-light text-royal-indigo">
-          Mathematics
+          {classItem.subject}
         </Text>
         <Text className="text-xl font-light text-royal-indigo/50">
-          Robert marting
+          {classItem.teacher}
         </Text>
       </View>
     </View>
