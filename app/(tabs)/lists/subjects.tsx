@@ -14,13 +14,21 @@ export default function Subjects() {
   );
   return (
     <View className="flex-1 p-3">
-      <Large className="text-2xl">Subjects</Large>
+      <Large className="mb-5 text-2xl">Subjects</Large>
       <FlashList
         data={subjects}
-        renderItem={({ item }) => <Text className="text-lg">{item.name}</Text>}
+        renderItem={({ item }) => (
+          <View className="flex flex-row items-center justify-between">
+            <Text className="text-lg">{item.name}</Text>
+            <View
+              className="h-5 w-5 rounded-full"
+              style={{ backgroundColor: item.color }}
+            />
+          </View>
+        )}
         estimatedItemSize={100}
         ItemSeparatorComponent={() => (
-          <View className="my-3 h-1 rounded-lg bg-gray-200" />
+          <View className="my-3 h-[2px] rounded-full bg-gray-300" />
         )}
       />
       <AddButton onPress={showAddSubjectDialog} />
