@@ -9,7 +9,7 @@ const P = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        className={cn("text-base text-foreground", className)}
+        className={cn("text-foreground text-base", className)}
         ref={ref}
         {...props}
       />
@@ -23,7 +23,7 @@ const Lead = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        className={cn("text-xl text-muted-foreground", className)}
+        className={cn("text-muted-foreground text-xl", className)}
         ref={ref}
         {...props}
       />
@@ -38,7 +38,7 @@ const Large = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        className={cn("text-xl text-foreground font-semibold", className)}
+        className={cn("text-foreground text-xl font-semibold", className)}
         ref={ref}
         {...props}
       />
@@ -54,7 +54,7 @@ const Medium = React.forwardRef<TextRef, SlottableTextProps>(
     return (
       <Component
         className={cn(
-          "text-xl text-foreground font-light leading-none",
+          "text-foreground text-xl font-light leading-none",
           className,
         )}
         ref={ref}
@@ -71,7 +71,7 @@ const Small = React.forwardRef<TextRef, SlottableTextProps>(
     return (
       <Component
         className={cn(
-          "text-sm text-foreground font-medium leading-none",
+          "text-foreground text-sm font-medium leading-none",
           className,
         )}
         ref={ref}
@@ -88,7 +88,7 @@ const Muted = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : RNText;
     return (
       <Component
-        className={cn("text-sm text-muted-foreground", className)}
+        className={cn("text-muted-foreground text-sm", className)}
         ref={ref}
         {...props}
       />

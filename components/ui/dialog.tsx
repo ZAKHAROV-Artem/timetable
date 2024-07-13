@@ -12,21 +12,24 @@ const DialogClose = DialogPrimitive.Close;
 
 const DialogOverlayNative = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, children, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay> & {
+    entering?: any;
+    exiting?: any;
+  }
+>(({ className, children, entering, exiting, ...props }, ref) => {
   return (
     <DialogPrimitive.Overlay
       style={StyleSheet.absoluteFill}
-      className={cn(
-        "z-50 flex h-full w-full items-center justify-center bg-transparent p-2",
-        className,
-      )}
       ref={ref}
       {...props}
     >
       <Animated.View
-        entering={FadeIn.duration(150)}
-        exiting={FadeOut.duration(150)}
+        entering={entering || FadeIn.duration(150)}
+        exiting={exiting || FadeOut.duration(150)}
+        className={cn(
+          "z-50 flex h-full w-full items-center justify-center bg-black/20 p-2",
+          className,
+        )}
       >
         <>{children}</>
       </Animated.View>
@@ -44,12 +47,15 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     portalHost?: string;
+    entering?: any;
+    exiting?: any;
+    overlayClassName?: string;
   }
->(({ className, children, portalHost, ...props }, ref) => {
+>(({ className, children, portalHost, entering, exiting, ...props }, ref) => {
   const { open } = DialogPrimitive.useRootContext();
   return (
     <DialogPortal hostName={portalHost}>
-      <DialogOverlay>
+      <DialogOverlay entering={entering} exiting={exiting}>
         <DialogPrimitive.Content ref={ref} {...props}>
           <View
             className={cn(

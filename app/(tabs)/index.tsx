@@ -1,12 +1,36 @@
 import FadeView from "@/components/animation/fade-view";
+import { ClassItem } from "@/components/class";
 import SafeArea from "@/components/primitives/safe-area";
-import { Subject } from "@/components/subject";
+import { AddButton } from "@/components/ui/buttons";
 import { Medium } from "@/components/ui/typography";
 import "@/global.css";
+import { useClassesStore } from "@/store/use-classes-store";
+import { Class } from "@/types/class";
+import dayjs from "dayjs";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import { ScrollView, SectionList, View } from "react-native";
 
 export default function Index() {
+  const classes = useClassesStore((state) => state.classes);
+
+  // Group classes by date
+  const sections = classes.reduce((acc: Record<string, Class[]>, classItem) => {
+    const date = classItem.weekDay; // Assuming classStartsAt is a Date object
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(classItem);
+    return acc;
+  }, {});
+
+  const sectionData = Object.keys(sections).map((date) => ({
+    title: date,
+    data: sections[date].sort((a, b) =>
+      dayjs(a.classStartsAt).diff(dayjs(b.classStartsAt)),
+    ),
+  }));
+
   return (
     <SafeArea>
       <FadeView>
@@ -16,24 +40,13 @@ export default function Index() {
         />
         <ScrollView className="flex-1">
           <SectionList
-            className="pb-28"
+            className="pb-24"
             scrollEnabled={false}
-            sections={[
-              {
-                title: "20 September 2022",
-                data: Array.from({ length: 6 }, (_, index) => index + 1),
-              },
-              {
-                title: "21 September 2022",
-                data: Array.from({ length: 5 }, (_, index) => index + 7),
-              },
-              {
-                title: "22 September 2022",
-                data: Array.from({ length: 4 }, (_, index) => index + 12),
-              },
-            ]}
-            keyExtractor={(_, index) => `key-${index}`}
-            renderItem={({ item }) => <Subject key={item} />}
+            sections={sectionData}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <ClassItem key={item.id} classItem={item} />
+            )}
             renderSectionHeader={({ section: { title } }) => (
               <Medium className="mt-3">{title}</Medium>
             )}
@@ -45,6 +58,7 @@ export default function Index() {
           colors={["transparent", "white"]}
           className="absolute bottom-0 z-10 h-14 w-full"
         />
+        <AddButton onPress={() => router.push("/add-class")} />
       </FadeView>
     </SafeArea>
   );
