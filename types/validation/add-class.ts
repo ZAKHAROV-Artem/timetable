@@ -20,6 +20,8 @@ export const AddClassSchema = zod.object({
 
   classStartsAt: zod.date(),
   classEndsAt: zod.date(),
+
+  color: zod.string().regex(/^#([0-9a-f]{3}){1,2}$/i, "Invalid color"),
 });
 
 export type AddClassFields = zod.infer<typeof AddClassSchema>;

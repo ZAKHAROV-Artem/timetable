@@ -12,12 +12,17 @@ type Actions = {
   setTeachers: (teachers: Teacher[]) => void;
   addTeacher: (teacher: Teacher) => void;
   removeTeacher: (id: string) => void;
+  reset: () => void;
+};
+
+const initialState: State = {
+  teachers: [],
 };
 
 export const useTeachersStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      teachers: [],
+      ...initialState,
       setTeachers: (teachers: Teacher[]) => {
         set((store) => {
           store.teachers = teachers;
@@ -35,6 +40,8 @@ export const useTeachersStore = create<State & Actions>()(
           );
         });
       },
+
+      reset: () => set(initialState),
     })),
     {
       name: "teachers-storage",

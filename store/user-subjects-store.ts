@@ -12,12 +12,16 @@ type Actions = {
   setSubjects: (subjects: Subject[]) => void;
   addSubject: (subject: Subject) => void;
   removeSubject: (id: string) => void;
+  reset: () => void;
+};
+const initialState: State = {
+  subjects: [],
 };
 
 export const useSubjectsStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      subjects: [],
+      ...initialState,
       setSubjects: (subjects: Subject[]) => {
         set((store) => {
           store.subjects = subjects;
@@ -35,6 +39,8 @@ export const useSubjectsStore = create<State & Actions>()(
           );
         });
       },
+
+      reset: () => set(initialState),
     })),
     {
       name: "subjects-storage",

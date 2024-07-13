@@ -12,12 +12,17 @@ type Actions = {
   setRooms: (rooms: Room[]) => void;
   addRoom: (room: Room) => void;
   removeRoom: (id: string) => void;
+  reset: () => void;
+};
+
+const initialState: State = {
+  rooms: [],
 };
 
 export const useRoomsStore = create<State & Actions>()(
   persist(
     immer((set, get) => ({
-      rooms: [],
+      ...initialState,
 
       setRooms: (rooms: Room[]) => {
         set((store) => {
@@ -36,6 +41,8 @@ export const useRoomsStore = create<State & Actions>()(
           store.rooms = store.rooms.filter((room) => room.id !== id);
         });
       },
+
+      reset: () => set(initialState),
     })),
     {
       name: "rooms-storage",
