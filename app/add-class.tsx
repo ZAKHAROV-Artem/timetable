@@ -36,10 +36,15 @@ export default function AddClass() {
   const [showEndsAtTimePicker, setShowEndsAtTimePicker] =
     useState<boolean>(false);
 
-  const { control, setValue, getValues, handleSubmit } =
-    useForm<AddClassFields>({
-      resolver: zodResolver(AddClassSchema),
-    });
+  const {
+    control,
+    setValue,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AddClassFields>({
+    resolver: zodResolver(AddClassSchema),
+  });
 
   const onSubmit: SubmitHandler<AddClassFields> = (data) => {
     addClass({
@@ -54,6 +59,7 @@ export default function AddClass() {
     });
     router.back();
   };
+  console.log(errors);
 
   return (
     <View className="px-2 py-5">
@@ -234,6 +240,9 @@ export default function AddClass() {
               />
             )}
           </View>
+          {errors.classEndsAt && (
+            <Text className="text-vivid-red">{errors.classEndsAt.message}</Text>
+          )}
         </View>
         <View>
           <Medium className="mb-2">Color (optional)</Medium>

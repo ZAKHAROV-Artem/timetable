@@ -3,6 +3,7 @@ import { ClassItem } from "@/components/class";
 import SafeArea from "@/components/primitives/safe-area";
 import { AddButton } from "@/components/ui/buttons";
 import { Medium } from "@/components/ui/typography";
+import { weekdays } from "@/data/weekdays";
 import "@/global.css";
 import { useClassesStore } from "@/store/use-classes-store";
 import { Class } from "@/types/class";
@@ -14,22 +15,23 @@ import { ScrollView, SectionList, View } from "react-native";
 export default function Index() {
   const classes = useClassesStore((store) => store.classes);
 
-  // Group classes by date
   const sections = classes.reduce((acc: Record<string, Class[]>, classItem) => {
-    const date = classItem.weekDay; // Assuming classStartsAt is a Date object
-    if (!acc[date]) {
-      acc[date] = [];
+    const weekDay = classItem.weekDay;
+    if (!acc[weekDay]) {
+      acc[weekDay] = [];
     }
-    acc[date].push(classItem);
+    acc[weekDay].push(classItem);
     return acc;
   }, {});
 
-  const sectionData = Object.keys(sections).map((date) => ({
-    title: date,
-    data: sections[date].sort((a, b) =>
-      dayjs(a.classStartsAt).diff(dayjs(b.classStartsAt)),
-    ),
-  }));
+  const sectionData = Object.keys(sections)
+    .sort((a, b) => weekdays.indexOf(a) - weekdays.indexOf(b))
+    .map((weekDay) => ({
+      title: weekDay,
+      data: sections[weekDay].sort((a, b) =>
+        dayjs(a.classStartsAt).diff(dayjs(b.classStartsAt)),
+      ),
+    }));
 
   return (
     <SafeArea>
