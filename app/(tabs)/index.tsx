@@ -9,7 +9,7 @@ import { useClassesStore } from "@/store/use-classes-store";
 import { Class } from "@/types/class";
 import dayjs from "dayjs";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { ScrollView, SectionList, View } from "react-native";
 
 export default function Index() {
