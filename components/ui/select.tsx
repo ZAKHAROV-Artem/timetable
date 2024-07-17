@@ -1,8 +1,8 @@
-import { Check, ChevronDown, ChevronUp } from "@/components/icons";
+import { Check, ChevronDown } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import * as SelectPrimitive from "@rn-primitives/select";
 import * as React from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 
 type Option = SelectPrimitive.Option;
@@ -48,8 +48,6 @@ const SelectContent = React.forwardRef<
     portalHost?: string;
   }
 >(({ className, children, position = "popper", portalHost, ...props }, ref) => {
-  const { open } = SelectPrimitive.useRootContext();
-
   return (
     <SelectPrimitive.Portal hostName={portalHost}>
       <SelectPrimitive.Overlay style={StyleSheet.absoluteFill}>

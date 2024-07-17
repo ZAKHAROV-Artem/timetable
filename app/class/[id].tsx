@@ -7,8 +7,7 @@ import dayjs from "dayjs";
 import { router, useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 
-type ClassDetailsProps = {};
-export default function ClassDetails({}: ClassDetailsProps) {
+export default function ClassDetails() {
   const { id } = useLocalSearchParams();
   const classItem = useClassesStore((store) =>
     store.classes.find((item) => item.id === id),
