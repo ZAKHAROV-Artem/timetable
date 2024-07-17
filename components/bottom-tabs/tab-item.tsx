@@ -5,7 +5,6 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
-
 import TabItemIcon from "./tab-item-icon";
 
 type TabItemProps = {
