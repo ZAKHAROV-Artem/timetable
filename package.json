@@ -9,8 +9,6 @@
     "lint": "expo lint",
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
-    "prettier": "prettier --c .",
-    "prettier:fix": "prettier --w \"**/*{.ts,tsx}\"",
     "reset-project": "node ./scripts/reset-project.js",
     "start": "expo start",
     "test": "jest --watchAll",
