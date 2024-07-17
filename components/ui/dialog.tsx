@@ -52,7 +52,6 @@ const DialogContent = React.forwardRef<
     overlayClassName?: string;
   }
 >(({ className, children, portalHost, entering, exiting, ...props }, ref) => {
-  const { open } = DialogPrimitive.useRootContext();
   return (
     <DialogPortal hostName={portalHost}>
       <DialogOverlay entering={entering} exiting={exiting}>
