@@ -29,12 +29,6 @@ export default function TabsLayout() {
           title: "Homework",
         }}
       />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-        }}
-      />
     </Tabs>
   );
 }

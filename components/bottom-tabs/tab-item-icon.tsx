@@ -1,4 +1,4 @@
-import { BookOpen, Home, List, Settings } from "@/components/icons";
+import { BookOpen, Home, List } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -13,8 +13,6 @@ export default function TabItemIcon({ route, className }: Props) {
       return <List className={cn("text-lg text-black/50", className)} />;
     case "homework":
       return <BookOpen className={cn("text-lg text-black/50", className)} />;
-    case "settings":
-      return <Settings className={cn("text-lg text-black/50", className)} />;
     default:
       return null;
   }

@@ -7,7 +7,6 @@ import {
   Home,
   List,
   Plus,
-  Settings,
   UserRound,
   X,
 } from "lucide-react-native";
@@ -17,7 +16,6 @@ iconWithClassName([
   UserRound,
   List,
   BookOpen,
-  Settings,
   Plus,
   X,
   ChevronUp,
@@ -30,7 +28,6 @@ export {
   List,
   ChevronDown,
   BookOpen,
-  Settings,
   Plus,
   X,
   ChevronUp,
