@@ -42,7 +42,7 @@ export default function ClassDetails() {
                 {classItem.teacher}
               </Text>
             </View>
-            {/* <View>
+            <View>
               <Text className="text-xl font-semibold text-royal-indigo">
                 Class Description
               </Text>
@@ -50,7 +50,7 @@ export default function ClassDetails() {
                 {classItem.description ||
                   "No description available for this class."}
               </Text>
-            </View> */}
+            </View>
             <View>
               <Text className="text-xl font-semibold text-royal-indigo">
                 Additional Information
