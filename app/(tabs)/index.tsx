@@ -43,7 +43,11 @@ export default function Index() {
 
         <AddButton onPress={() => router.push("/add-class")} />
 
-        <ScrollView className="flex-1">
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
           <SectionList
             className="pb-24"
             scrollEnabled={false}
