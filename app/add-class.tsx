@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
+import { Textarea } from "@/components/ui/textarea";
 import { Medium } from "@/components/ui/typography";
 import { colors } from "@/data/colors";
 import { weekdays } from "@/data/weekdays";
@@ -23,7 +24,7 @@ import dayjs from "dayjs";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 export default function AddClass() {
   const teachers = useTeachersStore((store) => store.teachers);
@@ -43,6 +44,9 @@ export default function AddClass() {
     handleSubmit,
     formState: { errors },
   } = useForm<AddClassFields>({
+    defaultValues: {
+      description: "",
+    },
     resolver: zodResolver(AddClassSchema),
   });
 
@@ -53,17 +57,16 @@ export default function AddClass() {
       teacher: data.teacher.value,
       room: data.room.value,
       subject: data.subject.value,
+      description: data.description,
       classStartsAt: data.classStartsAt,
       classEndsAt: data.classEndsAt,
       color: data.color,
     });
     router.back();
   };
-  console.log(errors);
-
   return (
-    <View className="px-2 py-5">
-      <View className="flex gap-10">
+    <ScrollView className="flex-1">
+      <View className="flex gap-10 px-2 py-5">
         <View className="flex gap-2">
           <Controller
             control={control}
@@ -177,6 +180,33 @@ export default function AddClass() {
           />
         </View>
         <View>
+          <Medium className="mb-2">Description</Medium>
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <>
+                <Textarea
+                  className={cn({
+                    "border-mint-green": value,
+                    "border-vivid-red": error,
+                  })}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <View className="flex flex-row justify-between">
+                  <Text className={cn({ "text-vivid-red": error?.message })}>
+                    {value.length} / 500
+                  </Text>
+                  {error?.message && (
+                    <Text className="text-vivid-red">{error.message}</Text>
+                  )}
+                </View>
+              </>
+            )}
+          />
+        </View>
+        <View>
           <Medium className="mb-2">Duration</Medium>
           <View className="flex flex-row justify-center gap-2">
             <Button
@@ -258,6 +288,6 @@ export default function AddClass() {
           <Text>Add</Text>
         </Button>
       </View>
-    </View>
+    </ScrollView>
   );
 }

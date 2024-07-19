@@ -19,6 +19,8 @@ export const AddClassSchema = zod
       value: zod.string().min(1, "Required"),
     }),
 
+    description: zod.string().max(500, "Too long").default(""),
+
     classStartsAt: zod.date(),
     classEndsAt: zod.date(),
 

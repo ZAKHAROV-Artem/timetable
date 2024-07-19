@@ -5,15 +5,16 @@
   "main": "expo-router/entry",
   "scripts": {
     "android": "expo run:android",
+    "commitlint": "commitlint --edit",
     "ios": "expo run:ios",
     "lint": "expo lint",
     "lint:fix": "eslint . --fix",
+    "prebuild": "expo prebuild",
     "prepare": "husky",
     "reset-project": "node ./scripts/reset-project.js",
     "start": "expo start",
     "test": "jest --watchAll",
-    "web": "expo start --web",
-    "commitlint": "commitlint --edit"
+    "web": "expo start --web"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
