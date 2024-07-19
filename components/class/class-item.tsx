@@ -21,7 +21,7 @@ export default function ClassItem({ classItem }: ClassItemProps) {
             {dayjs(classItem.classEndsAt).format("HH:mm")}
           </Text>
           <Text className="text-xl font-light text-royal-indigo">
-            {classItem.subject}
+            {classItem.subject} {classItem.room}
           </Text>
           <Text className="text-xl font-light text-royal-indigo/50">
             {classItem.teacher}
