@@ -18,7 +18,7 @@ export default function ClassDetails() {
     alert(`Add homework for ${classItem.subject}`);
   };
   const handleEditClass = () => {
-    alert(`Edit class ${classItem.subject}`);
+    router.push(`/class/edit/${id}`);
   };
   return (
     <SafeArea>

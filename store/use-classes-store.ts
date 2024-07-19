@@ -9,8 +9,9 @@ type State = {
 };
 
 type Actions = {
-  setClasses: (lists: Class[]) => void;
-  addClass: (list: Class) => void;
+  setClasses: (classes: Class[]) => void;
+  addClass: (classItem: Class) => void;
+  editClass: (classItem: Class) => void;
   removeClass: (id: string) => void;
   reset: () => void;
 };
@@ -31,6 +32,15 @@ export const useClassesStore = create<State & Actions>()(
       addClass: (classItem: Class) => {
         set((store) => {
           store.classes.push(classItem);
+        });
+      },
+
+      editClass: (classItem: Class) => {
+        set((store) => {
+          const index = store.classes.findIndex(
+            (item) => item.id === classItem.id,
+          );
+          store.classes[index] = classItem;
         });
       },
       removeClass: (id: string) => {

@@ -26,6 +26,14 @@ export default function RootLayout() {
             animation: "slide_from_right",
           }}
         />
+        <Stack.Screen
+          name="class/edit/[id]"
+          options={{
+            title: "Edit class",
+            headerShown: true,
+            animation: "slide_from_right",
+          }}
+        />
       </Stack>
       <PortalHost />
     </SafeAreaProvider>
