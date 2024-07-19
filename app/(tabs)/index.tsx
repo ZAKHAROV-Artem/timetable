@@ -40,6 +40,9 @@ export default function Index() {
           colors={["white", "transparent"]}
           className="absolute top-0 z-10 h-5 w-full"
         />
+
+        <AddButton onPress={() => router.push("/add-class")} />
+
         <ScrollView className="flex-1">
           <SectionList
             className="pb-24"
@@ -60,7 +63,6 @@ export default function Index() {
           colors={["transparent", "white"]}
           className="absolute bottom-0 z-10 h-14 w-full"
         />
-        <AddButton onPress={() => router.push("/add-class")} />
       </FadeView>
     </SafeArea>
   );

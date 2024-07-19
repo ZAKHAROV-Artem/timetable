@@ -9,7 +9,7 @@ export default function AddButton({ className, ...props }: AddButtonProps) {
   return (
     <Button
       className={cn(
-        "absolute bottom-24 left-1/2 flex -translate-x-1/2 items-center justify-center",
+        "absolute bottom-24 left-1/2 z-40 flex -translate-x-1/2 items-center justify-center",
         className,
       )}
       variant={"icon"}
