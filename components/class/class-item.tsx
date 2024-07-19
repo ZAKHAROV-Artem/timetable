@@ -1,13 +1,63 @@
+import { weekdays } from "@/data/weekdays";
 import { cn } from "@/lib/utils";
 import { Class } from "@/types/class";
 import dayjs from "dayjs";
 import { Link } from "expo-router";
+import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
 export type ClassItemProps = {
   classItem: Class;
 };
 export default function ClassItem({ classItem }: ClassItemProps) {
+  const [progress, setProgress] = useState(0);
+
+  const today = dayjs().format("dddd");
+  const todayIndex = weekdays.indexOf(today);
+  const classDayIndex = weekdays.indexOf(classItem.weekDay);
+
+  useEffect(() => {
+    if (todayIndex < classDayIndex) {
+      setProgress(0);
+      return;
+    }
+    if (todayIndex > classDayIndex) {
+      setProgress(100);
+      return;
+    }
+
+    const updateProgress = () => {
+      const now = dayjs();
+      const start = dayjs(classItem.classStartsAt);
+      const end = dayjs(classItem.classEndsAt);
+      const duration = end.diff(start);
+      const elapsed = now.diff(start);
+      const currentProgress = Math.min((elapsed / duration) * 100, 100);
+      setProgress(currentProgress);
+    };
+
+    const getNextMinuteDelay = () => {
+      const now = new Date();
+      return 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());
+    };
+
+    updateProgress();
+
+    const initialDelay = getNextMinuteDelay();
+    const timeout = setTimeout(() => {
+      updateProgress();
+      const interval = setInterval(updateProgress, 60000);
+      return () => clearInterval(interval);
+    }, initialDelay);
+
+    return () => clearTimeout(timeout);
+  }, [
+    classItem.classStartsAt,
+    classItem.classEndsAt,
+    classDayIndex,
+    todayIndex,
+  ]);
+
   return (
     <Link asChild href={`/class/${classItem.id}`}>
       <Pressable className="flex h-40 w-full flex-row overflow-hidden rounded-3xl bg-whisper-white">
@@ -27,6 +77,10 @@ export default function ClassItem({ classItem }: ClassItemProps) {
             {classItem.teacher}
           </Text>
         </View>
+        <View
+          className="absolute bottom-0 left-0 h-2 bg-green-500"
+          style={{ width: `${progress}%` }}
+        />
       </Pressable>
     </Link>
   );
