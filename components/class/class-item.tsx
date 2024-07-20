@@ -17,19 +17,18 @@ export default function ClassItem({ classItem }: ClassItemProps) {
   const classDayIndex = weekdays.indexOf(classItem.weekDay);
 
   useEffect(() => {
-    if (todayIndex < classDayIndex) {
+    if (todayIndex !== classDayIndex) {
       setProgress(0);
       return;
     }
-    if (todayIndex > classDayIndex) {
-      setProgress(100);
-      return;
-    }
-
     const updateProgress = () => {
       const now = dayjs();
-      const start = dayjs(classItem.classStartsAt);
-      const end = dayjs(classItem.classEndsAt);
+      const start = dayjs()
+        .set("hour", dayjs(classItem.classStartsAt).hour())
+        .set("minute", dayjs(classItem.classStartsAt).minute());
+      const end = dayjs()
+        .set("hour", dayjs(classItem.classEndsAt).hour())
+        .set("minute", dayjs(classItem.classEndsAt).minute());
       const duration = end.diff(start);
       const elapsed = now.diff(start);
       const currentProgress = Math.min((elapsed / duration) * 100, 100);
@@ -54,8 +53,8 @@ export default function ClassItem({ classItem }: ClassItemProps) {
   }, [
     classItem.classStartsAt,
     classItem.classEndsAt,
-    classDayIndex,
     todayIndex,
+    classDayIndex,
   ]);
 
   return (
