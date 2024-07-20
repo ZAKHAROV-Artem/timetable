@@ -1,4 +1,5 @@
 import { AddTeacherDialog } from "@/components/dialogs";
+import TeacherItem from "@/components/teacher/teacher-item";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
@@ -12,15 +13,13 @@ export default function Teachers() {
     (store) => store.addTeacher.show,
   );
   return (
-    <View className="flex-1 p-3">
+    <View className="flex-1 bg-white p-3">
       <Text className="text-2xl">Teachers</Text>
       <FlashList
         data={teachers}
-        renderItem={({ item }) => <Text className="text-lg">{item.name}</Text>}
-        estimatedItemSize={100}
-        ItemSeparatorComponent={() => (
-          <View className="my-3 h-1 rounded-lg bg-gray-200" />
-        )}
+        renderItem={({ item }) => <TeacherItem item={item} />}
+        estimatedItemSize={20}
+        ItemSeparatorComponent={() => <View className="h-3" />}
       />
       <AddButton onPress={showAddTeacherDialog} />
       <AddTeacherDialog />
