@@ -1,4 +1,5 @@
 import { AddRoomDialog } from "@/components/dialogs";
+import RoomItem from "@/components/room/room-item";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
@@ -15,13 +16,9 @@ export default function Rooms() {
       <Text className="text-2xl">Rooms</Text>
       <FlashList
         data={rooms}
-        renderItem={({ item }) => (
-          <Text className="text-lg">{item.roomNumber}</Text>
-        )}
-        estimatedItemSize={100}
-        ItemSeparatorComponent={() => (
-          <View className="my-3 h-1 rounded-lg bg-gray-200" />
-        )}
+        renderItem={({ item }) => <RoomItem key={item.id} item={item} />}
+        estimatedItemSize={20}
+        ItemSeparatorComponent={() => <View className="h-3" />}
       />
       <AddButton onPress={showAddRoomDialog} />
       <AddRoomDialog />

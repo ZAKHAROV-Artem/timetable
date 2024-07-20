@@ -1,15 +1,20 @@
 import { weekdays } from "@/data/weekdays";
 import { cn } from "@/lib/utils";
+import { useClassesStore } from "@/store/use-classes-store";
 import { Class } from "@/types/class";
 import dayjs from "dayjs";
 import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
+import Animated, { FadeOut } from "react-native-reanimated";
+import { SwipeableDelete } from "../shared/swipeable-delete";
 
 export type ClassItemProps = {
   classItem: Class;
 };
 export default function ClassItem({ classItem }: ClassItemProps) {
+  const removeClass = useClassesStore((store) => store.removeClass);
+
   const [progress, setProgress] = useState(0);
 
   const today = dayjs().format("dddd");
@@ -58,29 +63,36 @@ export default function ClassItem({ classItem }: ClassItemProps) {
   ]);
 
   return (
-    <Link asChild href={`/class/${classItem.id}`}>
-      <Pressable className="flex h-40 w-full flex-row overflow-hidden rounded-3xl bg-whisper-white">
-        <View
-          className={cn("h-full w-10 rounded-3xl")}
-          style={{ backgroundColor: classItem.color }}
-        />
-        <View className="p-3">
-          <Text className="text-2xl font-light text-royal-indigo">
-            {dayjs(classItem.classStartsAt).format("HH:mm")} -{" "}
-            {dayjs(classItem.classEndsAt).format("HH:mm")}
-          </Text>
-          <Text className="text-xl font-light text-royal-indigo">
-            {classItem.subject} {classItem.room}
-          </Text>
-          <Text className="text-xl font-light text-royal-indigo/50">
-            {classItem.teacher}
-          </Text>
-        </View>
-        <View
-          className="absolute bottom-0 left-0 h-2 bg-green-500"
-          style={{ width: `${progress}%` }}
-        />
-      </Pressable>
-    </Link>
+    <SwipeableDelete
+      deleteAction={() => removeClass(classItem.id)}
+      className="rounded-r-3xl"
+    >
+      <Animated.View exiting={FadeOut}>
+        <Link asChild href={`/class/${classItem.id}`}>
+          <Pressable className="flex h-40 w-full flex-row overflow-hidden rounded-3xl bg-whisper-white">
+            <View
+              className={cn("h-full w-10 rounded-3xl")}
+              style={{ backgroundColor: classItem.color }}
+            />
+            <View className="p-3">
+              <Text className="text-2xl font-light text-royal-indigo">
+                {dayjs(classItem.classStartsAt).format("HH:mm")} -{" "}
+                {dayjs(classItem.classEndsAt).format("HH:mm")}
+              </Text>
+              <Text className="text-xl font-light text-royal-indigo">
+                {classItem.subject} {classItem.room}
+              </Text>
+              <Text className="text-xl font-light text-royal-indigo/50">
+                {classItem.teacher}
+              </Text>
+            </View>
+            <View
+              className="absolute bottom-0 left-0 h-2 bg-green-500"
+              style={{ width: `${progress}%` }}
+            />
+          </Pressable>
+        </Link>
+      </Animated.View>
+    </SwipeableDelete>
   );
 }

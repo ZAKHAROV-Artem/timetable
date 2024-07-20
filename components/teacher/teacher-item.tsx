@@ -10,10 +10,7 @@ export default function TeacherItem({ item }: TeacherItemProps) {
 
   return (
     <SwipeableDelete deleteAction={() => removeTeacher(item.id)}>
-      <Animated.View
-        exiting={FadeOut.duration(150)}
-        className="rounded-lg bg-whisper-white p-3"
-      >
+      <Animated.View exiting={FadeOut} className="rounded-lg bg-white p-3">
         <Text className="text-lg">{item.name}</Text>
       </Animated.View>
     </SwipeableDelete>

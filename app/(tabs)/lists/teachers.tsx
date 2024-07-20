@@ -13,11 +13,11 @@ export default function Teachers() {
     (store) => store.addTeacher.show,
   );
   return (
-    <View className="flex-1 bg-white p-3">
+    <View className="flex-1 p-3">
       <Text className="text-2xl">Teachers</Text>
       <FlashList
         data={teachers}
-        renderItem={({ item }) => <TeacherItem item={item} />}
+        renderItem={({ item }) => <TeacherItem key={item.id} item={item} />}
         estimatedItemSize={20}
         ItemSeparatorComponent={() => <View className="h-3" />}
       />
