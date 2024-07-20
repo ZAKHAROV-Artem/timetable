@@ -10,11 +10,11 @@ const Input = React.forwardRef<
     <TextInput
       ref={ref}
       className={cn(
-        "h-12 rounded-md border px-3 text-base file:border-0 file:bg-transparent file:font-medium lg:text-sm",
+        "h-12 rounded-md bg-white px-3 text-base lg:text-sm",
         props.editable === false && "opacity-50",
         className,
       )}
-      placeholderClassName={cn("text-muted-foreground", placeholderClassName)}
+      placeholderClassName={cn(placeholderClassName)}
       {...props}
     />
   );
