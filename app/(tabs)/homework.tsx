@@ -1,12 +1,38 @@
 import FadeView from "@/components/animation/fade-view";
+import { HomeworkItem } from "@/components/homework";
 import SafeArea from "@/components/primitives/safe-area";
-import { Text } from "react-native";
+import { Text } from "@/components/ui/text";
+import { useHomeworkStore } from "@/store/use-homework-store";
+import { FlashList } from "@shopify/flash-list";
+import dayjs from "dayjs";
+import { View } from "react-native";
 
 export default function Homework() {
+  const homework = useHomeworkStore((store) => {
+    const incompleteHomework = store.homework.filter(
+      (item) => !item.isCompleted,
+    );
+    const completedHomework = store.homework.filter((item) => item.isCompleted);
+
+    incompleteHomework.sort((a, b) => dayjs(a.dueDate).diff(dayjs(b.dueDate)));
+    completedHomework.sort((a, b) => dayjs(a.dueDate).diff(dayjs(b.dueDate)));
+
+    return [...incompleteHomework, ...completedHomework];
+  });
+  const setCompleted = useHomeworkStore((store) => store.setCompleted);
   return (
     <SafeArea>
       <FadeView>
-        <Text>Homework</Text>
+        <Text className="text-2xl font-bold text-gray-800">Homework</Text>
+
+        <FlashList
+          data={homework}
+          renderItem={({ item }) => (
+            <HomeworkItem item={item} setCompleted={setCompleted} />
+          )}
+          estimatedItemSize={100}
+          ItemSeparatorComponent={() => <View className="h-2" />}
+        />
       </FadeView>
     </SafeArea>
   );
