@@ -34,6 +34,14 @@ export default function RootLayout() {
             animation: "slide_from_right",
           }}
         />
+        <Stack.Screen
+          name="class/homework/add"
+          options={{
+            title: "Add homework",
+            headerShown: true,
+            animation: "slide_from_left",
+          }}
+        />
       </Stack>
       <PortalHost />
     </SafeAreaProvider>
