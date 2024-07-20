@@ -18,7 +18,7 @@ export default function Subjects() {
       <FlashList
         data={subjects}
         renderItem={({ item }) => <SubjectItem item={item} />}
-        estimatedItemSize={100}
+        estimatedItemSize={20}
         ItemSeparatorComponent={() => <View className="h-3" />}
       />
       <AddButton onPress={showAddSubjectDialog} />
