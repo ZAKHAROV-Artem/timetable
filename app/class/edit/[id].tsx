@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/select";
 import { Text } from "@/components/ui/text";
 import { Textarea } from "@/components/ui/textarea";
-import { Medium } from "@/components/ui/typography";
 import { colors } from "@/data/colors";
 import { weekdays } from "@/data/weekdays";
 import { cn } from "@/lib/utils";
@@ -211,7 +210,7 @@ export default function EditClass() {
           />
         </View>
         <View>
-          <Medium className="mb-2">Description</Medium>
+          <Text className="mb-2">Description</Text>
           <Controller
             control={control}
             name="description"
@@ -238,7 +237,7 @@ export default function EditClass() {
           />
         </View>
         <View>
-          <Medium className="mb-2">Duration</Medium>
+          <Text className="mb-2">Duration</Text>
           <View className="flex flex-row justify-center gap-2">
             <Button
               className="w-1/2"
@@ -306,7 +305,7 @@ export default function EditClass() {
           )}
         </View>
         <View>
-          <Medium className="mb-2">Color (optional)</Medium>
+          <Text className="mb-2">Color (optional)</Text>
           <Controller
             control={control}
             name="color"

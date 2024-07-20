@@ -1,7 +1,6 @@
 import { AddRoomDialog } from "@/components/dialogs";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
-import { Large } from "@/components/ui/typography";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
 import { useRoomsStore } from "@/store/user-rooms-store";
 import { FlashList } from "@shopify/flash-list";
@@ -13,7 +12,7 @@ export default function Rooms() {
 
   return (
     <View className="flex-1 p-3">
-      <Large className="text-2xl">Rooms</Large>
+      <Text className="text-2xl">Rooms</Text>
       <FlashList
         data={rooms}
         renderItem={({ item }) => (

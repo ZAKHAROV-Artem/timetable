@@ -1,7 +1,6 @@
 import { AddTeacherDialog } from "@/components/dialogs";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
-import { Large } from "@/components/ui/typography";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
 import { useTeachersStore } from "@/store/user-teachers-store";
 import { FlashList } from "@shopify/flash-list";
@@ -14,7 +13,7 @@ export default function Teachers() {
   );
   return (
     <View className="flex-1 p-3">
-      <Large className="text-2xl">Teachers</Large>
+      <Text className="text-2xl">Teachers</Text>
       <FlashList
         data={teachers}
         renderItem={({ item }) => <Text className="text-lg">{item.name}</Text>}

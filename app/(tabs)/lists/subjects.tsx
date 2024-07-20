@@ -1,7 +1,6 @@
 import { AddSubjectDialog } from "@/components/dialogs";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
-import { Large } from "@/components/ui/typography";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
 import { useSubjectsStore } from "@/store/user-subjects-store";
 import { FlashList } from "@shopify/flash-list";
@@ -14,7 +13,7 @@ export default function Subjects() {
   );
   return (
     <View className="flex-1 p-3">
-      <Large className="mb-5 text-2xl">Subjects</Large>
+      <Text className="mb-5 text-2xl">Subjects</Text>
       <FlashList
         data={subjects}
         renderItem={({ item }) => (

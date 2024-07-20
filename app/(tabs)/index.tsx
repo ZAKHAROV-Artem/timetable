@@ -2,7 +2,7 @@ import FadeView from "@/components/animation/fade-view";
 import { ClassItem } from "@/components/class";
 import SafeArea from "@/components/primitives/safe-area";
 import { AddButton } from "@/components/ui/buttons";
-import { Medium } from "@/components/ui/typography";
+import { Text } from "@/components/ui/text";
 import { weekdays } from "@/data/weekdays";
 import "@/global.css";
 import { useClassesStore } from "@/store/use-classes-store";
@@ -57,7 +57,7 @@ export default function Index() {
               <ClassItem key={item.id} classItem={item} />
             )}
             renderSectionHeader={({ section: { title } }) => (
-              <Medium className="mt-3">{title}</Medium>
+              <Text className="mt-3 text-xl font-light">{title}</Text>
             )}
             SectionSeparatorComponent={() => <View className="h-6" />}
             ItemSeparatorComponent={() => <View className="h-4" />}
