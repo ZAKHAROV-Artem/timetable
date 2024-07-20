@@ -40,7 +40,6 @@ export default function AddClass() {
   const {
     control,
     setValue,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<AddClassFields>({
@@ -209,66 +208,67 @@ export default function AddClass() {
         <View>
           <Medium className="mb-2">Duration</Medium>
           <View className="flex flex-row justify-center gap-2">
-            <Button
-              className="w-1/2"
-              onPress={() => setShowStartsAtTimePicker(true)}
-            >
-              <Text>
-                {getValues("classStartsAt")
-                  ? dayjs(getValues("classStartsAt")).format("HH:mm")
-                  : "Starts at"}
-              </Text>
-            </Button>
-            <Button
-              className="w-1/2"
-              onPress={() => setShowEndsAtTimePicker(true)}
-            >
-              <Text>
-                {getValues("classEndsAt")
-                  ? dayjs(getValues("classEndsAt")).format("HH:mm")
-                  : "Ends at"}
-              </Text>
-            </Button>
-            {showStartsAtTimePicker && (
-              <Controller
-                control={control}
-                name="classStartsAt"
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <DateTimePicker
-                    mode="time"
-                    value={value || new Date()}
-                    is24Hour={true}
-                    onChange={(event, selectedDate) => {
-                      onChange(selectedDate);
-                      setShowStartsAtTimePicker(false);
-                    }}
-                  />
-                )}
-              />
-            )}
-            {showEndsAtTimePicker && (
-              <Controller
-                control={control}
-                name="classEndsAt"
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <DateTimePicker
-                    mode="time"
-                    value={value || new Date()}
-                    is24Hour={true}
-                    onChange={(event, selectedDate) => {
-                      onChange(selectedDate);
-                      setShowEndsAtTimePicker(false);
-                    }}
-                  />
-                )}
-              />
-            )}
+            <Controller
+              control={control}
+              name="classStartsAt"
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <>
+                  <Button
+                    className="w-1/2"
+                    onPress={() => setShowStartsAtTimePicker(true)}
+                  >
+                    <Text>
+                      {value ? dayjs(value).format("HH:mm") : "Starts at"}
+                    </Text>
+                  </Button>
+                  {showStartsAtTimePicker && (
+                    <DateTimePicker
+                      mode="time"
+                      value={value || new Date()}
+                      is24Hour={true}
+                      onChange={(event, selectedDate) => {
+                        onChange(selectedDate);
+                        setShowStartsAtTimePicker(false);
+                      }}
+                    />
+                  )}
+                </>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="classEndsAt"
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <>
+                  <Button
+                    className="w-1/2"
+                    onPress={() => setShowEndsAtTimePicker(true)}
+                  >
+                    <Text>
+                      {value ? dayjs(value).format("HH:mm") : "Ends at"}
+                    </Text>
+                  </Button>
+                  {showEndsAtTimePicker && (
+                    <DateTimePicker
+                      mode="time"
+                      value={value || new Date()}
+                      is24Hour={true}
+                      onChange={(event, selectedDate) => {
+                        onChange(selectedDate);
+                        setShowEndsAtTimePicker(false);
+                      }}
+                    />
+                  )}
+                </>
+              )}
+            />
           </View>
           {errors.classEndsAt && (
             <Text className="text-vivid-red">{errors.classEndsAt.message}</Text>
