@@ -17,7 +17,7 @@ export default function Subjects() {
       <Text className="mb-5 text-2xl">Subjects</Text>
       <FlashList
         data={subjects}
-        renderItem={({ item }) => <SubjectItem item={item} />}
+        renderItem={({ item }) => <SubjectItem key={item.id} item={item} />}
         estimatedItemSize={20}
         ItemSeparatorComponent={() => <View className="h-3" />}
       />

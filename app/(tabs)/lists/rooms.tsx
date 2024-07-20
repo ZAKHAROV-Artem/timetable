@@ -16,7 +16,7 @@ export default function Rooms() {
       <Text className="text-2xl">Rooms</Text>
       <FlashList
         data={rooms}
-        renderItem={({ item }) => <RoomItem item={item} />}
+        renderItem={({ item }) => <RoomItem key={item.id} item={item} />}
         estimatedItemSize={20}
         ItemSeparatorComponent={() => <View className="h-3" />}
       />

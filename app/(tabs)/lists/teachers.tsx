@@ -17,7 +17,7 @@ export default function Teachers() {
       <Text className="text-2xl">Teachers</Text>
       <FlashList
         data={teachers}
-        renderItem={({ item }) => <TeacherItem item={item} />}
+        renderItem={({ item }) => <TeacherItem key={item.id} item={item} />}
         estimatedItemSize={20}
         ItemSeparatorComponent={() => <View className="h-3" />}
       />
