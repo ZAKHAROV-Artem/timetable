@@ -15,7 +15,7 @@ export default function ClassDetails() {
   if (!classItem) return null;
 
   const handleAddHomework = () => {
-    alert(`Add homework for ${classItem.subject}`);
+    router.push({ pathname: "/class/homework/add", params: { id } });
   };
   const handleEditClass = () => {
     router.push(`/class/edit/${id}`);

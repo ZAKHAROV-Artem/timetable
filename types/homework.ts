@@ -2,7 +2,7 @@ export type Homework = {
   id: string;
   title: string;
   description: string;
-  dueDate: string;
+  dueDate: Date;
   isCompleted: boolean;
 
   subject: string;

@@ -11,6 +11,7 @@ type State = {
 type Actions = {
   setHomework: (homework: Homework[]) => void;
   addHomework: (homework: Homework) => void;
+  setCompleted: (id: string, isCompleted: boolean) => void;
   removeHomework: (id: string) => void;
   reset: () => void;
 };
@@ -38,6 +39,13 @@ export const useHomeworkStore = create<State & Actions>()(
       removeHomework: (id) => {
         set((state) => {
           state.homework = state.homework.filter((item) => item.id !== id);
+        });
+      },
+
+      setCompleted: (id, isCompleted) => {
+        set((state) => {
+          const index = state.homework.findIndex((item) => item.id === id);
+          state.homework[index].isCompleted = isCompleted;
         });
       },
 
