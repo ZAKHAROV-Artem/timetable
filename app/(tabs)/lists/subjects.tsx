@@ -1,4 +1,5 @@
 import { AddSubjectDialog } from "@/components/dialogs";
+import SubjectItem from "@/components/subject/subject-item";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
 import { useDialogsStore } from "@/store/dialogs/use-dialogs-store";
@@ -16,19 +17,9 @@ export default function Subjects() {
       <Text className="mb-5 text-2xl">Subjects</Text>
       <FlashList
         data={subjects}
-        renderItem={({ item }) => (
-          <View className="flex flex-row items-center justify-between">
-            <Text className="text-lg">{item.name}</Text>
-            <View
-              className="h-5 w-5 rounded-full"
-              style={{ backgroundColor: item.color }}
-            />
-          </View>
-        )}
+        renderItem={({ item }) => <SubjectItem item={item} />}
         estimatedItemSize={100}
-        ItemSeparatorComponent={() => (
-          <View className="my-3 h-[2px] rounded-full bg-gray-300" />
-        )}
+        ItemSeparatorComponent={() => <View className="h-3" />}
       />
       <AddButton onPress={showAddSubjectDialog} />
       <AddSubjectDialog />
