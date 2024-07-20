@@ -1,6 +1,7 @@
 import FadeView from "@/components/animation/fade-view";
 import { ClassItem } from "@/components/class";
 import SafeArea from "@/components/primitives/safe-area";
+import { ListEmpty } from "@/components/shared/list-empty";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
 import { weekdays } from "@/data/weekdays";
@@ -61,6 +62,7 @@ export default function Index() {
             )}
             SectionSeparatorComponent={() => <View className="h-6" />}
             ItemSeparatorComponent={() => <View className="h-4" />}
+            ListEmptyComponent={() => <ListEmpty>No classes</ListEmpty>}
           />
         </ScrollView>
         <LinearGradient

@@ -1,4 +1,5 @@
 import { AddTeacherDialog } from "@/components/dialogs";
+import { ListEmpty } from "@/components/shared/list-empty";
 import TeacherItem from "@/components/teacher/teacher-item";
 import { AddButton } from "@/components/ui/buttons";
 import { Text } from "@/components/ui/text";
@@ -20,6 +21,7 @@ export default function Teachers() {
         renderItem={({ item }) => <TeacherItem key={item.id} item={item} />}
         estimatedItemSize={20}
         ItemSeparatorComponent={() => <View className="h-3" />}
+        ListEmptyComponent={() => <ListEmpty>No teachers</ListEmpty>}
       />
       <AddButton onPress={showAddTeacherDialog} />
       <AddTeacherDialog />

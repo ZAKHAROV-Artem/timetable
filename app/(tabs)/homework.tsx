@@ -1,6 +1,7 @@
 import FadeView from "@/components/animation/fade-view";
 import { HomeworkItem } from "@/components/homework";
 import SafeArea from "@/components/primitives/safe-area";
+import { ListEmpty } from "@/components/shared/list-empty";
 import { Text } from "@/components/ui/text";
 import { useHomeworkStore } from "@/store/use-homework-store";
 import { FlashList } from "@shopify/flash-list";
@@ -28,10 +29,15 @@ export default function Homework() {
         <FlashList
           data={homework}
           renderItem={({ item }) => (
-            <HomeworkItem item={item} setCompleted={setCompleted} />
+            <HomeworkItem
+              key={item.id}
+              item={item}
+              setCompleted={setCompleted}
+            />
           )}
           estimatedItemSize={100}
-          ItemSeparatorComponent={() => <View className="h-2" />}
+          ItemSeparatorComponent={() => <View className="h-4" />}
+          ListEmptyComponent={() => <ListEmpty>No homework</ListEmpty>}
         />
       </FadeView>
     </SafeArea>
