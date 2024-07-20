@@ -20,11 +20,11 @@ const Textarea = React.forwardRef<
       <TextInput
         ref={ref}
         className={cn(
-          "min-h-[80px] w-full rounded-md border border-black px-3 py-2 text-base lg:text-sm",
+          "min-h-[80px] w-full rounded-md bg-white px-3 py-2 text-base lg:text-sm",
           props.editable === false && "opacity-50",
           className,
         )}
-        placeholderClassName={cn("text-muted-foreground", placeholderClassName)}
+        placeholderClassName={cn(placeholderClassName)}
         multiline={multiline}
         numberOfLines={numberOfLines}
         textAlignVertical="top"
